@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-8*=sn-(2ler8@cj#+d@f&s*jmtnk8df!788sagwltwoayxs%rn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [""]
 
 
 # Application definition
@@ -49,12 +49,14 @@ INSTALLED_APPS = [
     'drf_yasg',
     'dj_rest_auth',
     'rest_framework.authtoken',
+    'whitenoise.runserver_nostatic',
     #local apps
     'books',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -64,6 +66,8 @@ MIDDLEWARE = [
 
     'allauth.account.middleware.AccountMiddleware',
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManiFestStaticFilesStorage'
+
 
 ROOT_URLCONF = 'config.urls'
 # for authentication
